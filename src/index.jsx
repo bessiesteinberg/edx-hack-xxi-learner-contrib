@@ -2,12 +2,9 @@ import 'babel-polyfill';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import PostsPage from './containers/PostsPage';
-import CommentSearchPage from './containers/CommentSearchPage';
-import DisclosurePage from './containers/DisclosurePage';
 import store from './data/store';
 import './App.scss';
 
