@@ -22,29 +22,26 @@ function getRandomInt(min, max) {
 const today = Date.now();
 
 function App() {
-  // const blockTypes = ['html', 'video', 'problem'];
   function randomValues(numDays) {
+    const blockTypes = ['html', 'video', 'problem'];
     const values = [];
     for (let i = numDays; i >= 0; i -= 1) {
-      values.push({
+      const currValue = {
         date: shiftDate(today, -i),
         count: getRandomInt(0, 3),
-      });
+        completions: [],
+      };
+      for (let j = 0; j < currValue.count; j += 1) {
+        currValue.completions.push({
+          block_type: blockTypes[getRandomInt(0, 2)],
+          block_key: `block_key_${getRandomInt(0, 99999)}`,
+          block_name: `Block Name ${getRandomInt(0, 99999)}`,
+        });
+      }
+      values.push(currValue);
     }
     return values;
   }
-
-  //
-  //   return getRange(200).map(index => ({
-  //     date: shiftDate(today, -index),
-  //     count: getRandomInt(0, 3),
-  //     completions: getRange(this.count).map({
-  //       block_type: blockTypes[getRandomInt(0, 2)],
-  //       block_key: `block_key_${getRandomInt(0, 99999)}`,
-  //       block_name: `Block Name ${getRandomInt(0, 99999)}`,
-  //     }),
-  //   }));
-  // }
   return (
     <LearnerCompletionsVisualization
       completionData={randomValues(300)}
