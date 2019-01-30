@@ -28,7 +28,6 @@ const LearnerCompletionsVisualization = ({
     }}
     showMonthLabels
     showWeekdayLabels
-    horizontal={false}
   />
 );
 
