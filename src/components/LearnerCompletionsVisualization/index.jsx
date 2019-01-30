@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'react-calendar-heatmap/dist/styles.css';
+import moment from 'moment';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import './LearnerCompletionsVisualization.scss';
 
@@ -11,7 +12,6 @@ function shiftDate(date, numDays) {
   newDate.setDate(newDate.getDate() + numDays);
   return newDate;
 }
-
 class LearnerCompletionsVisualization extends React.Component {
   constructor(props) {
     super(props);
@@ -37,15 +37,22 @@ class LearnerCompletionsVisualization extends React.Component {
           }}
           showMonthLabels
           showWeekdayLabels
-          onClick={value => (
-            this.setState({
-              completionDetails: value,
-            })
-          )}
+          onClick={(value) => {
+            if (value.count === 0) {
+              this.setState({
+                completionDetails: null,
+              });
+            } else {
+              this.setState({
+                completionDetails: value,
+              });
+            }
+          }}
         />
         {completionDetails && (
           <div>
-            <h2>Completions on {completionDetails.date}</h2>
+            <h2>Completions on {moment(completionDetails.date).format('MMM, DD YYYY')}</h2>
+
           </div>
         )}
       </div>

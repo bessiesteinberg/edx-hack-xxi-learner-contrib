@@ -27,6 +27,7 @@
     "email-prop-type": "^1.1.5",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "moment": "^2.24.0",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-calendar-heatmap": "^1.8.0",
