@@ -38,6 +38,7 @@ function App() {
       classForValue={value => `color-${value.count}`}
       showMonthLabels
       showWeekdayLabels
+      horizontal={false}
     />
 
   );
