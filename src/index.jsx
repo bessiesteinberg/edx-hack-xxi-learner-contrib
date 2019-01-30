@@ -12,7 +12,7 @@ import './App.scss';
 function shiftDate(date, numDays) {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + numDays);
-  return newDate;
+  return `${newDate.getUTCFullYear()}-${newDate.getUTCMonth()}-${newDate.getUTCDate()}`;
 }
 
 function getRandomInt(min, max) {
@@ -24,6 +24,7 @@ const today = Date.now();
 function App() {
   function randomValues(numDays) {
     const blockTypes = ['html', 'video', 'problem'];
+    const courseNames = ['Transfiguration 301', 'Potions 301', 'Arithmency 101'];
     const values = [];
     for (let i = numDays; i >= 0; i -= 1) {
       const currValue = {
@@ -36,6 +37,7 @@ function App() {
           block_type: blockTypes[getRandomInt(0, 2)],
           block_key: `block_key_${getRandomInt(0, 99999)}`,
           block_name: `Block Name ${getRandomInt(0, 99999)}`,
+          course_name: courseNames[getRandomInt(0, 2)],
         });
       }
       values.push(currValue);
