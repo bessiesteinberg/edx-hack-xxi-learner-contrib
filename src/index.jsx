@@ -1,8 +1,8 @@
 import 'babel-polyfill';
-import CalendarHeatmap from 'react-calendar-heatmap';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-calendar-heatmap/dist/styles.css';
+import LearnerCompletionsVisualization from './components/LearnerCompletionsVisualization';
+
 import './App.scss';
 
 // const endDate = Date.now();
@@ -31,16 +31,9 @@ function App() {
     count: getRandomInt(0, 3),
   }));
   return (
-    <CalendarHeatmap
-      startDate={shiftDate(today, -150)}
-      endDate={today}
-      values={randomValues}
-      classForValue={value => `color-${value.count}`}
-      showMonthLabels
-      showWeekdayLabels
-      horizontal={false}
+    <LearnerCompletionsVisualization
+      completionData={randomValues}
     />
-
   );
 }
 
