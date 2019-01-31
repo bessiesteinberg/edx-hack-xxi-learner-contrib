@@ -14,8 +14,18 @@ function shiftDate(date, numDays) {
 }
 
 class LearnerCompletionsVisualization extends React.Component {
+  static getBlockUrl() {
+    return 'http://localhost:18000/';
+  }
+
   static displayCompletionEvents(completionEvents) {
-    return completionEvents.map(completionEvent => <p>{completionEvent.block_name}</p>);
+    return completionEvents.map(completionEvent => (
+      <ul>
+        <li>
+          <a href={LearnerCompletionsVisualization.getBlockUrl()}>{completionEvent.block_name}</a>
+        </li>
+      </ul>
+    ));
   }
 
   static groupCompletionDetailsByCourseName(completionDetails) {
