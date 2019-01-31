@@ -25,7 +25,7 @@ class LearnerCompletionsVisualization extends React.Component {
       if (!(currCourseName in completionDetailsByCourseName)) {
         completionDetailsByCourseName[currCourseName] = [];
       }
-      completionDetailsByCourseName[currCourseName].push(completionDetails);
+      completionDetailsByCourseName[currCourseName].push(completionDetails[index]);
     }
     return Object.keys(completionDetailsByCourseName).map(courseName => (
       <span key={courseName}>
