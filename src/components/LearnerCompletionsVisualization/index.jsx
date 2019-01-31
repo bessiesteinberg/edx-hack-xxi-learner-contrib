@@ -63,7 +63,7 @@ class LearnerCompletionsVisualization extends React.Component {
           showMonthLabels
           showWeekdayLabels
           onClick={(value) => {
-            if (value.count === 0) {
+            if (!value || value.count === 0 || completionDetails === value) {
               this.setState({
                 completionDetails: null,
               });
