@@ -12,13 +12,38 @@ function shiftDate(date, numDays) {
   newDate.setDate(newDate.getDate() + numDays);
   return newDate;
 }
+
 class LearnerCompletionsVisualization extends React.Component {
+  static displayCompletionEvents(completionEvents) {
+    return completionEvents.map(completionEvent => <p>{completionEvent.block_name}</p>);
+  }
+
+  static groupCompletionDetailsByCourseName(completionDetails) {
+    const completionDetailsByCourseName = {};
+    for (let index = 0; index < completionDetails.length; index += 1) {
+      const currCourseName = completionDetails[index].course_name;
+      if (!(currCourseName in completionDetailsByCourseName)) {
+        completionDetailsByCourseName[currCourseName] = [];
+      }
+      completionDetailsByCourseName[currCourseName].push(completionDetails);
+    }
+    return Object.keys(completionDetailsByCourseName).map(courseName => (
+      <span>
+        <h2>{courseName}</h2>
+        {LearnerCompletionsVisualization.displayCompletionEvents((
+          completionDetailsByCourseName[courseName]
+        ))}
+      </span>
+    ));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       completionDetails: null,
     };
   }
+
   render() {
     const { completionData } = this.props;
     const { completionDetails } = this.state;
@@ -52,7 +77,9 @@ class LearnerCompletionsVisualization extends React.Component {
         {completionDetails && (
           <div>
             <h2>Completions on {moment(completionDetails.date).format('MMM, DD YYYY')}</h2>
-
+            {LearnerCompletionsVisualization.groupCompletionDetailsByCourseName((
+              completionDetails.completions
+            ))}
           </div>
         )}
       </div>
@@ -68,6 +95,7 @@ LearnerCompletionsVisualization.propTypes = {
       block_type: PropTypes.string,
       block_key: PropTypes.string,
       block_name: PropTypes.string,
+      course_name: PropTypes.string,
     })),
   })).isRequired,
 };
