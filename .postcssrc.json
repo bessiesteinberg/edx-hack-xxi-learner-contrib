@@ -1,0 +1,5 @@
+{
+    "parser": "postcss-scss",
+    "map": false,
+    "plugins": {}
+  }

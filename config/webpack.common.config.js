@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/',
+    publicPath: '/edx-hack-xxi-learner-contrib',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
