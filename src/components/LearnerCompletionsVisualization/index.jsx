@@ -48,10 +48,10 @@ class LearnerCompletionsVisualization extends React.Component {
     const { completionData } = this.props;
     const { completionDetails } = this.state;
     return (
-      <div>
+      <div className="learner-completions-visualization">
         <CalendarHeatmap
           // TODO: assume we are always presenting a year for now
-          startDate={shiftDate(today, -365)}
+          startDate={shiftDate(today, -120)}
           endDate={today}
           values={completionData}
           classForValue={(value) => {
@@ -74,6 +74,7 @@ class LearnerCompletionsVisualization extends React.Component {
             }
           }}
         />
+        <hr />
         {completionDetails && (
           <div>
             <h2>Completions on {moment(completionDetails.date).format('MMM, DD YYYY')}</h2>
@@ -98,6 +99,21 @@ LearnerCompletionsVisualization.propTypes = {
       course_name: PropTypes.string,
     })),
   })).isRequired,
+  metaData: PropTypes.shape({
+    longest_streak: PropTypes.shape({
+      count: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
+    }),
+    current_streak: PropTypes.shape({
+      count: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
+    }),
+    total_completions: PropTypes.number,
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
+  }).isRequired,
 };
 
 export default LearnerCompletionsVisualization;
