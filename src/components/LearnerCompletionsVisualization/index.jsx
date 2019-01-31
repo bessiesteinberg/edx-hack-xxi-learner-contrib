@@ -113,28 +113,28 @@ LearnerCompletionsVisualization.propTypes = {
   completionData: PropTypes.arrayOf(PropTypes.shape({
     date: PropTypes.string,
     count: PropTypes.number,
-    completions: PropTypes.arrayOf(PropTypes.shape({
+    blocks: PropTypes.arrayOf(PropTypes.shape({
       block_type: PropTypes.string,
       block_key: PropTypes.string,
       block_name: PropTypes.string,
       course_name: PropTypes.string,
     })),
+    meta: PropTypes.shape({
+      longest_streak: PropTypes.shape({
+        count: PropTypes.number,
+        start_date: PropTypes.string,
+        end_date: PropTypes.string,
+      }),
+      current_streak: PropTypes.shape({
+        count: PropTypes.number,
+        start_date: PropTypes.string,
+        end_date: PropTypes.string,
+      }),
+      total_completions: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
+    }).isRequired,
   })).isRequired,
-  metaData: PropTypes.shape({
-    longest_streak: PropTypes.shape({
-      count: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-    }),
-    current_streak: PropTypes.shape({
-      count: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-    }),
-    total_completions: PropTypes.number,
-    start_date: PropTypes.string,
-    end_date: PropTypes.string,
-  }).isRequired,
 };
 
 export default LearnerCompletionsVisualization;
