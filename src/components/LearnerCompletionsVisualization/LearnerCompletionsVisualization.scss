@@ -12,7 +12,17 @@
   h2 {
     font-size: 16px;
   }
-
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+    }
+  }
+  .course-name {
+    margin: 0;
+  }
   .streaks {
     div {
       width: 50%;

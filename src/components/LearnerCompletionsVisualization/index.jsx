@@ -20,7 +20,7 @@ class LearnerCompletionsVisualization extends React.Component {
 
   static displayCompletionEvents(completionEvents) {
     return completionEvents.map(completionEvent => (
-      <ul>
+      <ul className="mb-2">
         <li>
           <a href={LearnerCompletionsVisualization.getBlockUrl()}>{completionEvent.block_name}</a>
         </li>
@@ -38,12 +38,12 @@ class LearnerCompletionsVisualization extends React.Component {
       completionDetailsByCourseName[currCourseName].push(completionDetails[index]);
     }
     return Object.keys(completionDetailsByCourseName).map(courseName => (
-      <span key={courseName}>
-        <h2>{courseName}</h2>
+      <div key={courseName}>
+        <p className="course-name"><em>{courseName}</em></p>
         {LearnerCompletionsVisualization.displayCompletionEvents((
           completionDetailsByCourseName[courseName]
         ))}
-      </span>
+      </div>
     ));
   }
 
@@ -97,7 +97,7 @@ class LearnerCompletionsVisualization extends React.Component {
           </div>
         </div>
         {completionDetails && (
-          <div>
+          <div className="mt-4 font-weight-light">
             <h2>Completions on {moment(completionDetails.date).format('MMM, DD YYYY')}</h2>
             {LearnerCompletionsVisualization.groupCompletionDetailsByCourseName((
               completionDetails.completions
