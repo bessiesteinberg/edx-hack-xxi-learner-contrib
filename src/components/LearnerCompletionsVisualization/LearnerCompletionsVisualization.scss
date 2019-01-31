@@ -3,6 +3,7 @@
   max-width: 300px;
   margin: auto;
   padding: 10px;
+  font-size: 14px;
 
   hr {
     margin: -25px 0 10px;
@@ -10,6 +11,21 @@
 
   h2 {
     font-size: 16px;
+  }
+
+  .streaks {
+    div {
+      width: 50%;
+
+      p {
+        margin: 0;
+      }
+
+      .streak-number {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
   }
 
   .react-calendar-heatmap {
