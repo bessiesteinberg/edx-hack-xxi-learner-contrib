@@ -28,7 +28,7 @@ class LearnerCompletionsVisualization extends React.Component {
       completionDetailsByCourseName[currCourseName].push(completionDetails);
     }
     return Object.keys(completionDetailsByCourseName).map(courseName => (
-      <span>
+      <span key={courseName}>
         <h2>{courseName}</h2>
         {LearnerCompletionsVisualization.displayCompletionEvents((
           completionDetailsByCourseName[courseName]
