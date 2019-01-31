@@ -64,7 +64,7 @@ class LearnerCompletionsVisualization extends React.Component {
           // TODO: assume we are always presenting a year for now
           startDate={shiftDate(today, -120)}
           endDate={today}
-          values={completionData}
+          values={completionData.completions}
           classForValue={(value) => {
             if (!value) {
               return 'color-0';
@@ -89,18 +89,18 @@ class LearnerCompletionsVisualization extends React.Component {
         <div className="streaks d-flex justify-space-between">
           <div className="text-center">
             <p className="font-weight-light">Current Streak</p>
-            <p className="streak-number">1 day</p>
+            <p className="streak-number">{completionData.meta.current_streak.count}</p>
           </div>
           <div className="text-center">
             <p className="font-weight-light">Longest Streak</p>
-            <p className="streak-number">5 days</p>
+            <p className="streak-number">{completionData.meta.longest_streak.count}</p>
           </div>
         </div>
         {completionDetails && (
           <div className="mt-4 font-weight-light">
             <h2>Completions on {moment(completionDetails.date).format('MMM, DD YYYY')}</h2>
             {LearnerCompletionsVisualization.groupCompletionDetailsByCourseName((
-              completionDetails.completions
+              completionDetails.blocks
             ))}
           </div>
         )}
@@ -110,31 +110,33 @@ class LearnerCompletionsVisualization extends React.Component {
 }
 
 LearnerCompletionsVisualization.propTypes = {
-  completionData: PropTypes.arrayOf(PropTypes.shape({
-    date: PropTypes.string,
-    count: PropTypes.number,
-    blocks: PropTypes.arrayOf(PropTypes.shape({
-      block_type: PropTypes.string,
-      block_key: PropTypes.string,
-      block_name: PropTypes.string,
-      course_name: PropTypes.string,
-    })),
-    meta: PropTypes.shape({
-      longest_streak: PropTypes.shape({
-        count: PropTypes.number,
-        start_date: PropTypes.string,
-        end_date: PropTypes.string,
-      }),
-      current_streak: PropTypes.shape({
-        count: PropTypes.number,
-        start_date: PropTypes.string,
-        end_date: PropTypes.string,
-      }),
-      total_completions: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-    }).isRequired,
-  })).isRequired,
+  completionData: PropTypes.shape({}).isRequired,
+  //   completions: PropTypes.arrayOf(PropTypes.shape({
+  //     date: PropTypes.string,
+  //     count: PropTypes.number,
+  //     blocks: PropTypes.arrayOf(PropTypes.shape({
+  //       block_type: PropTypes.string,
+  //       block_key: PropTypes.string,
+  //       block_name: PropTypes.string,
+  //       course_name: PropTypes.string,
+  //     })),
+  //   }),
+  //   meta: PropTypes.shape({
+  //     longest_streak: PropTypes.shape({
+  //       count: PropTypes.number,
+  //       start_date: PropTypes.string,
+  //       end_date: PropTypes.string,
+  //     }),
+  //     current_streak: PropTypes.shape({
+  //       count: PropTypes.number,
+  //       start_date: PropTypes.string,
+  //       end_date: PropTypes.string,
+  //     }),
+  //     total_completions: PropTypes.number,
+  //     start_date: PropTypes.string,
+  //     end_date: PropTypes.string,
+  //   }),
+  // }).isRequired,
 };
 
 export default LearnerCompletionsVisualization;
